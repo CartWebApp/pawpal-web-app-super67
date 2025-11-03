@@ -8,29 +8,173 @@
     <link rel="stylesheet" href="app.css">
 </head>
 <body>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="summary.html">Summary</a>
-        <a href="food-log.html">Food Log</a>
-        <a href="settings.html">Settings</a>
-    </nav>
-    <section>
-    <h1>Summary</h1>
-      <h2>Exercise</h2>
-        <p>
-          <ul>
-            🐕Steps Taken: 7,842 today!
-            🏃‍♂️Distance Covered: 4.2 miles
-            🌳Outdoor Time: 45 minutes park time
-            💦Energy Level: High -- ready for another round!
-            ⏱️Walk Sessions: 2 walks logged today
-            🦴Calories Burned: 320 kcal
-            🎯Goal Progress: 42% of 10 miles completed
-          </ul>
-        </p>
-      <h2 class="weight">Weight</h2>
-      <h2 class="number">87</h2>
-  <footer>
-    <h3>Weekly Exercise Goal</h3>
-      <p>0.0 miles</p><p>10.0 miles</p>
-  </footer>
+    <div class="app">
+      <aside class="sidebar" aria-label="Main navigation">
+        <div class="brand">
+          <div style="width:40px;height:40px;border-radius:8px;background:#fff" aria-hidden></div>
+          <div>
+            <div style="font-weight:700">PawPal</div>
+            <div style="font-size:12px;opacity:0.9">Pet Wellness</div>
+          </div>
+        </div>
+
+        <input class="search" placeholder="Search for..." aria-label="Search">
+
+        <nav class="nav-list" aria-label="Sections">
+          <a class="nav-item active" href="summary.html">Summary</a>
+          <a class="nav-item" href="add-pet-profile.html">Manage Pets</a>
+          <a class="nav-item" href="settings.html">Settings</a>
+        </nav>
+      </aside>
+
+      <main>
+        <h1>Summary</h1>
+
+        <div class="summary-card">
+        <div class="left-column">
+
+
+          <div class="controls">
+            <label for="petSelect">Select pet</label>
+            <select id="petSelect"></select>
+            <div id="noPetsMsg" style="margin-top:8px;color:#b33;display:none">No pets found — <a href="add-pet-profile.html">Add a pet</a></div>
+          </div>
+
+          <div class="controls" style="margin-top:12px">
+            <h3>Log exercise</h3>
+            <form id="logForm">
+              <div style="display:flex;gap:8px;align-items:center">
+                <select id="logType">
+                  <option value="🚶🏽Walk">🚶🏽Walk</option>
+                  <option value="🏃‍♂️Run">🏃‍♂️Run</option>
+                  <option value="🎾Play">🎾Play</option>
+                  <option value="❓Other">❓Other</option>
+                </select>
+                <input id="logDistance" type="number" step="0.1" placeholder="miles">
+                <input id="logMinutes" type="number" placeholder="minutes" style="width:110px">
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px">
+                <small id="todayTotal">Today's total: 0.0 miles</small>
+                <button type="submit" style="background:var(--accent);color:#fff;padding:8px 12px;border-radius:8px;border:none">Add</button>
+              </div>
+            </form>
+
+            <div id="logList" class="log-area" style="margin-top:12px"></div>
+          </div>
+        </div>
+
+        <div class="right-column">
+          <div class="weight-circle">
+            <div class="label">Weight</div>
+            <div id="weightNumber" class="value">—</div>
+          </div>
+
+          <div class="progress-wrap">
+            <h3 style="color:var(--white)">Weekly Exercise Goal</h3>
+            <div class="progress-bar">
+              <div id="progressBar" class="progress-fill"></div>
+              <div style="position:absolute;left:50%;top:-6px;width:2px;height:26px;background:#111"></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;color:var(--white);margin-top:6px;width:360px"><small>0.0 miles</small><small>10.0 miles</small></div>
+          </div>
+        </div>
+      </div>
+
+      </main>
+    </div>
+
+    <script>
+      // Load pets from localStorage (existing key used earlier by the add-pet page)
+      const PET_KEY = 'pawpal_pets_v1';
+      const EX_KEY = 'pawpal_exercise_v1';
+
+      function loadPets(){
+        try{ return JSON.parse(localStorage.getItem(PET_KEY)) || []; }catch(e){return []}
+      }
+
+      function loadExercise(){
+        try{ return JSON.parse(localStorage.getItem(EX_KEY)) || {}; }catch(e){return {}};
+      }
+
+      function saveExercise(obj){ localStorage.setItem(EX_KEY, JSON.stringify(obj)); }
+
+      const petSelect = document.getElementById('petSelect');
+      const noPetsMsg = document.getElementById('noPetsMsg');
+      const weightNumber = document.getElementById('weightNumber');
+      const todayTotal = document.getElementById('todayTotal');
+      const logForm = document.getElementById('logForm');
+      const logList = document.getElementById('logList');
+      const progressBar = document.getElementById('progressBar');
+
+      let pets = loadPets();
+      let exercise = loadExercise();
+
+      function populatePetSelect(){
+        petSelect.innerHTML = '';
+        const available = pets.map((p,i)=> ({p,i})).filter(x=>x.p && x.p.name);
+        if(available.length === 0){ petSelect.style.display='none'; noPetsMsg.style.display='block'; weightNumber.textContent = '—'; return; }
+        petSelect.style.display='block'; noPetsMsg.style.display='none';
+        available.forEach(({p,i})=>{
+          const opt = document.createElement('option'); opt.value = i; opt.textContent = p.name; petSelect.appendChild(opt);
+        });
+        // select first by default
+        petSelect.selectedIndex = 0;
+        onPetChange();
+      }
+
+      function onPetChange(){
+        const idx = petSelect.value;
+        const pet = pets[idx];
+        if(!pet){ weightNumber.textContent = '—'; return; }
+        weightNumber.textContent = pet.weight || '—';
+        renderLogsFor(idx);
+      }
+
+      function renderLogsFor(idx){
+        const all = exercise[idx] || [];
+        // show today's entries and total
+        const today = new Date().toISOString().slice(0,10);
+        const todays = all.filter(e=>e.date===today);
+        const total = todays.reduce((s,e)=> s + Number(e.distance || 0), 0);
+        todayTotal.textContent = `Today's total: ${total.toFixed(1)} miles`;
+        // update progress (example weekly goal 10 miles)
+        const weeklyGoal = 10;
+        const percent = Math.min(100, (total/weeklyGoal)*100);
+        progressBar.style.width = percent + '%';
+
+        logList.innerHTML = '';
+        if(all.length===0){ logList.innerHTML = '<small>No exercise logged yet.</small>'; return; }
+        // render each entry as a card-like log-item
+        all.slice().reverse().forEach(entry=>{
+          const item = document.createElement('div'); item.className = 'log-item';
+          const left = document.createElement('div'); left.className = 'log-left';
+          const type = document.createElement('div'); type.className = 'log-type'; type.textContent = entry.type || 'Exercise';
+          const meta = document.createElement('div'); meta.className = 'log-meta'; meta.textContent = `${entry.date} — ${entry.minutes || 0} min`;
+          left.appendChild(type); left.appendChild(meta);
+          const dist = document.createElement('div'); dist.className = 'log-distance'; dist.textContent = `${Number(entry.distance||0).toFixed(1)} mi`;
+          item.appendChild(left); item.appendChild(dist);
+          logList.appendChild(item);
+        });
+      }
+
+      logForm.addEventListener('submit', (e)=>{
+        e.preventDefault();
+        const idx = petSelect.value;
+        if(idx === '' || !pets[idx]){ alert('Select a pet first'); return; }
+        const distance = Number(document.getElementById('logDistance').value) || 0;
+        const minutes = Number(document.getElementById('logMinutes').value) || 0;
+        const type = document.getElementById('logType').value || 'Exercise';
+        const date = new Date().toISOString().slice(0,10);
+        exercise[idx] = exercise[idx] || [];
+        exercise[idx].push({date, distance, minutes, type});
+        saveExercise(exercise);
+        document.getElementById('logDistance').value = '';
+        document.getElementById('logMinutes').value = '';
+        renderLogsFor(idx);
+      });
+
+      petSelect.addEventListener('change', onPetChange);
+
+      // initial populate
+      populatePetSelect();
+    </script>
