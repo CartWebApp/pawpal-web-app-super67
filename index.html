@@ -5,59 +5,85 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header class="site-header">
-        <div class="nav-wrap">
+        <div class="container nav-wrap">
+            <div class="brand">PawPal Pet Wellness</div>
             <nav class="nav">
-        <a href="index.html">Home</a>
-        <a href="summary.html">Summary</a>
-        <a href="food-log.html">Food Log</a>
-        <a href="settings.html">Settings</a>
-        <button class="btn login">Login</button>
-        <button class="btn freetrial">Start Free Trial</button>
-    </nav>
-    <header id="hero">
-        <Section class="hero-content">
-            <h1>Download the PawlPal app on your mobile device!</h1>
-            <p>Taking care of a pet isn’t easy. With PawPal Pet Wellness app, all of your pet’s health and care information is organized and accessible right from the palm of your hand.</p>
-            <button class="btn try free">Try free for 7 days!!</button>
-        </Section>
+                <a href="index.html" class="active">Home</a>
+                <a href="summary.html">Summary</a>
+                <a href="food-log.html">Food Log</a>
+                <a href="settings.html">Settings</a>
+            </nav>
+            <div class="nav-actions"><button class="btn login">Log In</button><button class="btn outline">Start Free Trial</button></div>
+        </div>
     </header>
-    </div>
-        
-    <h2>Pawpal helps track and guide you to do what's best for your pet.</h2>
 
-    <section class="profiles">
-        <h2>🐕Smart Pet Profiles</h2>
-        <p>Keep everything about your pet in one place. Add and view:
-        <ul>
-            Name, breed, and age
-            Profile photo
-            Health notes and updates
-        </ul>
-            Switch between pets in a tap!</p>
-    </section>
-    <section class="logging"><h2>🗓️Effortless Daily Logging</h2>
-        <p>Track your pet's day without the hassle. Log and view: • Feedings and walks • Vet visits and medications • Playtime and mood updates
-            Stay consistent and keep your pet's wellness on track! 🐾</p></section>
-    <section class="alerts"><h2>🔔Custom Alerts & Reminders</h2>
-        <p>Track every important detail of your pet's day:
-            <ul>
-            🥣 Feedings - Log time, food type, and amount
-            🐾 Walks & Exercise - Record activities, duration, and distance
-            💊 Medication - Schedule doses and set reminders
-            ⚕️ Health - Monitor weight, symptoms, and vet notes
-            </ul>
-            Everything you need, beautifully organized.</p></section>
-    </section>
-    <section class="subscription"><h2>✨ Get Started Today</h2>
-    <h2>$4.99/month</h2>
-    <p>Try free for 7 days, then $4.99/month</p>
-    <button class="btn try free">Start Free Trial</button></section>
-    <footer>
-        <p>&copy; 2024 PawPal. All rights reserved.</p>
+    <main>
+        <section class="hero container">
+            <div class="hero-text">
+                <h1>Download the PawPal app on your mobile device!</h1>
+                <p>Taking care of a pet isn't easy. With PawPal Pet Wellness app, all of your pet's health and care information is organized and accessible right from the palm of your hand.</p>
+                <div class="hero-cta">
+                    <button class="btn primary">Try free for 7 days!</button>
+                    <div class="stores">
+                        <img src="Home Page IMG/greyhound.png" alt="App" style="width:120px;border-radius:10px">
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="Home Page IMG/greyhound.png" alt="Dog" />
+            </div>
+        </section>
+
+        <section class="container features">
+            <h2 class="center">PawPal helps track and guide you to do what's best for your pet.</h2>
+
+            <div class="feature">
+                <div class="feature-text">
+                    <h3>🐕 Smart Pet Profiles</h3>
+                    <ul>
+                        <li>Name, breed, and age</li>
+                        <li>Profile photo</li>
+                        <li>Health notes and updates</li>
+                    </ul>
+                </div>
+                <div class="feature-image"><img src="Home Page IMG/greyhound.png" alt="pet"></div>
+            </div>
+
+            <div class="feature reverse">
+                <div class="feature-text">
+                    <h3>🗓️ Effortless Daily Logging</h3>
+                    <p>Track your pet's day without the hassle. Log feedings, walks, medications, and playtime — all in one place.</p>
+                </div>
+                <div class="feature-image"><img src="Home Page IMG/Settings - Add Events.png" alt="logging"></div>
+            </div>
+
+            <div class="feature">
+                <div class="feature-text">
+                    <h3>� Custom Alerts & Reminders</h3>
+                    <p>Never miss a feed, walk, or medication — set reminders and get notified when it's time.</p>
+                </div>
+                <div class="feature-image"><img src="Home Page IMG/greyhound.png" alt="reminders"></div>
+            </div>
+
+            <div class="cta-large">
+                <h2>✨ Get Started Today</h2>
+                <div class="price">$4.99/month</div>
+                <p>Try free for 7 days, then $4.99/month</p>
+                <button class="btn primary large">Start Free Trial</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-left">Try free for 7 days, then $4.99/month</div>
+            <div class="footer-right">Join Us • © PawPal Pet Wellness</div>
+        </div>
+    </footer>
 </body>
 </html>
 

@@ -1,49 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Add Pet Profile — PawPal</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    :root{--bg:#6f86a7;--sidebar:#51657f;--card:#c9d7e9;--muted:#e9eef8;--accent:#fff}
-    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial;background:var(--bg);color:#123047}
-    .app{display:flex;min-height:100vh}
-    .sidebar{width:260px;background:var(--sidebar);padding:28px 18px;box-sizing:border-box;color:var(--muted);display:flex;flex-direction:column;gap:18px}
-    .brand{display:flex;align-items:center;gap:10px;color:#fff;margin-bottom:6px}
-    .search{background:rgba(255,255,255,0.06);border-radius:10px;padding:8px 10px;color:#fff;border:none;width:100%}
-    .nav-list{margin-top:18px;display:flex;flex-direction:column;gap:8px}
-    .nav-item{background:rgba(255,255,255,0.06);padding:12px;border-radius:10px;color:#fff;display:flex;align-items:center;gap:10px;text-decoration:none}
-    .nav-item.active{background:#e9eef8;color:#123047;font-weight:600}
-
-    main{flex:1;padding:36px 48px}
-    h1{color:#fff;margin:6px 0 18px;font-size:28px}
-
-    .content-wrap{display:flex;gap:20px}
-    .left-col{width:260px}
-    .panel{background:linear-gradient(#dbe9ff,#c9dbf6);padding:18px;border-radius:12px}
-
-    /* cards grid area */
-    .grid-wrap{flex:1;display:grid;grid-template-columns:repeat(3,1fr);gap:28px;align-items:start}
-    .stack{background:rgba(0,0,0,0.03);padding:18px;border-radius:10px;min-height:520px;box-shadow:0 6px 0 rgba(0,0,0,0.04)}
-
-    .pet-card{width:170px;height:150px;border-radius:12px;border:4px solid rgba(255,255,255,0.9);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:18px auto;background:transparent}
-    .pet-card .circle{width:64px;height:64px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
-    .pet-card .circle svg{width:36px;height:36px}
-    .pet-card p{margin:0;color:#eaf0fb;font-size:16px}
-
-    /* give inner background similar to mock behind cards */
-    .stack{background:linear-gradient(#6f86a7,#6f86a7);}
-    .pet-card{background:rgba(255,255,255,0.06);}
-    .pet-card p{color:#eaf0fb}
-
-    /* responsive */
-    @media(max-width:1100px){.grid-wrap{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:700px){.grid-wrap{grid-template-columns:1fr}.left-col{display:none}}
-
-    /* center column alignment so cards stack vertically in the middle */
-    .stack-inner{display:flex;flex-direction:column;align-items:center}
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="app">

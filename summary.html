@@ -5,16 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="app.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="app">
       <aside class="sidebar" aria-label="Main navigation">
         <div class="brand">
-          <div style="width:40px;height:40px;border-radius:8px;background:#fff" aria-hidden></div>
-          <div>
-            <div style="font-weight:700">PawPal</div>
-            <div style="font-size:12px;opacity:0.9">Pet Wellness</div>
+          <div class="brand-icon" aria-hidden></div>
+          <div class="brand-text">
+            <div class="brand-name">PawPal</div>
+            <div class="brand-sub">Pet Wellness</div>
           </div>
         </div>
 
@@ -37,29 +37,28 @@
           <div class="controls">
             <label for="petSelect">Select pet</label>
             <select id="petSelect"></select>
-            <div id="noPetsMsg" style="margin-top:8px;color:#b33;display:none">No pets found — <a href="add-pet-profile.html">Add a pet</a></div>
+            <div id="noPetsMsg" class="no-pets-msg">No pets found — <a href="add-pet-profile.html">Add a pet</a></div>
           </div>
 
-          <div class="controls" style="margin-top:12px">
+          <div class="controls controls--spaced">
             <h3>Log exercise</h3>
             <form id="logForm">
-              <div style="display:flex;gap:8px;align-items:center">
+              <div class="log-form-row">
                 <select id="logType">
                   <option value="🚶🏽Walk">🚶🏽Walk</option>
                   <option value="🏃‍♂️Run">🏃‍♂️Run</option>
                   <option value="🎾Play">🎾Play</option>
                   <option value="❓Other">❓Other</option>
                 </select>
-                <input id="logDistance" type="number" step="0.1" placeholder="miles">
-                <input id="logMinutes" type="number" placeholder="minutes" style="width:110px">
+                <input id="logDistance" type="number" step="0.1" placeholder="miles" class="input-distance">
+                <input id="logMinutes" type="number" placeholder="minutes" class="input-minutes">
               </div>
-              <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px">
+              <div class="log-form-actions">
                 <small id="todayTotal">Today's total: 0.0 miles</small>
-                <button type="submit" style="background:var(--accent);color:#fff;padding:8px 12px;border-radius:8px;border:none">Add</button>
+                <button type="submit" class="btn-add">Add</button>
               </div>
             </form>
-
-            <div id="logList" class="log-area" style="margin-top:12px"></div>
+            <div id="logList" class="log-area"></div>
           </div>
         </div>
 
@@ -70,12 +69,12 @@
           </div>
 
           <div class="progress-wrap">
-            <h3 style="color:var(--white)">Weekly Exercise Goal</h3>
+            <h3>Weekly Exercise Goal</h3>
             <div class="progress-bar">
               <div id="progressBar" class="progress-fill"></div>
-              <div style="position:absolute;left:50%;top:-6px;width:2px;height:26px;background:#111"></div>
+              <div class="progress-marker" aria-hidden></div>
             </div>
-            <div style="display:flex;justify-content:space-between;color:var(--white);margin-top:6px;width:360px"><small>0.0 miles</small><small>10.0 miles</small></div>
+            <div class="progress-legend"><small>0.0 miles</small><small>10.0 miles</small></div>
           </div>
         </div>
       </div>
