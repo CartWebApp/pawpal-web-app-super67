@@ -1,0 +1,155 @@
+* {
+    padding:0;
+    margin:0;
+    box-sizing:border-box;
+    flex-direction:r
+}
+
+.sidebar {
+    width:260px;
+    background:var(--sidebar);
+    padding:28px 18px;box-sizing:border-box;
+    color:var(--muted);
+    display:flex;
+    flex-direction:column;
+
+}
+
+.pet-card, .pet-card1, .pet-card2, .pet-card3, .pet-card4 {
+    width:170px;
+    height:170px;
+    border-radius: 10px;
+    display:flex;
+    flex-direction:column;
+    border: 3px solid white;
+    justify-content: center;
+    background: transparent;
+    padding: 12px;
+    gap: 6px;
+    cursor: pointer;
+}
+ .circle{
+    width:64px;
+    height:64px;
+    border-radius:50%;
+    background:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:12px
+}
+    .pet-card .circle svg{
+        width:36px;
+        height:36px;
+
+    }
+
+    .pet-card1, p{
+        margin:0;
+        color:#eaf0fb;
+        font-size:16px
+    }
+
+.flex-container {
+    display:flex;
+    flex-direction:row;
+}
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #637FAC;
+    color: #000000;
+}
+
+nav {
+    background-color: #252525;
+    color: rgb(255, 255, 255);
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items:flex-start;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+.feature-row {
+    display: flex;
+    
+}
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 12px 16px;
+    background-color:#637FAC;
+
+}
+
+/* Modal overlay and dialog (for inline modal inserted by script) */
+#petModal{
+    position:fixed;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(0,0,0,0.45);
+    z-index:60;
+    visibility:hidden;
+    opacity:0;
+    transition:opacity .18s ease-in-out, visibility .18s;
+}
+#petModal .dialog{
+    width:520px;
+    max-width:92%;
+    background:#fff;
+    border-radius:12px;
+    padding:18px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.25);
+}
+#petModal h2{ margin:0 0 12px; font-size:18px }
+#petModal form{ font-size:14px; color:#222 }
+#petModal label{ font-size:12px; margin-bottom:6px; color:#333 }
+#petModal input[type="text"], #petModal select{
+    padding:8px 10px;
+    border-radius:6px;
+    border:1px solid #dfe7f4;
+    background:#fff;
+    width:100%;
+}
+#petModal .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:10px }
+#petModal .grid-full{ grid-column:1/-1 }
+#petModal .form-actions{ display:flex; justify-content:flex-end; gap:8px; margin-top:12px }
+#petModal button{ padding:8px 12px; border-radius:8px; border:none }
+#petModal button#modalCancel{ background:#efefef }
+#petModal button#modalSave{ background:#0b6bff; color:#fff }
+
+@media (max-width:520px){
+    #petModal .dialog{ padding:14px }
+    .pet-card{ width:140px; height:140px }
+}
+
+.stack-inner { 
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.modal {
+    display:flex; 
+    flex-direction: column;
+    justify-content:center;
+    align-items:center;
+    flex-wrap: wrap;
+}
